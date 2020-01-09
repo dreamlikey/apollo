@@ -36,6 +36,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      */
     public Object initializeBean() {
 
+        populateBean();
+
+
         return null;
     }
 

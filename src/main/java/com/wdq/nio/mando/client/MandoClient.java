@@ -80,7 +80,7 @@ class ClientChannelInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         //manda解码解码器
-        ch.pipeline() .addLast(new MandoMessageDecoder(1024, 4, 4));
+        ch.pipeline() .addLast(new MandoMessageDecoder(1024, 4, 100));
         //manda编码器
         ch.pipeline().addLast("MessageEncoder",new MandoMessageEncoder());
 //        //RpcReqProto解码

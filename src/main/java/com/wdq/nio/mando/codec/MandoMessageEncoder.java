@@ -25,7 +25,6 @@ public class MandoMessageEncoder extends MessageToByteEncoder<MandoMessage> {
 //
 //        sendBuf.writeBytes(rpcReq.toByteArray());
 
-
     }
 
 }

@@ -45,11 +45,13 @@ public class CountTask extends RecursiveTask<Integer> {
     }
 
     public static void main(String[] args){
+        long start = System.currentTimeMillis();
         ForkJoinPool pool = new ForkJoinPool();
         CountTask task = new CountTask(1,4);
         Future<Integer> result = pool.submit(task);
+        long end = System.currentTimeMillis();
         try {
-            System.out.println(result.get());
+            System.out.println(result.get() + " 耗时："+(end-start));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -4,8 +4,7 @@ import com.wdq.springframework.context.ApplicationContext;
 
 /**
  * @author wudq
- * @date 2019/2/22 002214
- * @Description: TODO
+ * @date 2019/2/22
  */
 public class AbstractApplicationContext implements ApplicationContext {
 

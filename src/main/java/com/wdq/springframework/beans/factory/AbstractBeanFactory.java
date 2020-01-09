@@ -2,8 +2,7 @@ package com.wdq.springframework.beans.factory;
 
 /**
  * @author wudq
- * @date 2019/2/22 002215
- * @Description: TODO
+ * @date 2019/2/22
  */
 public abstract class AbstractBeanFactory implements BeanFactory {
     @Override

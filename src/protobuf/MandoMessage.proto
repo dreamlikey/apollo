@@ -5,25 +5,29 @@ package tutorial;
 option java_package = "com.example.tutorial";
 option java_outer_classname = "AddressBookProtos";
 
-message Person {
-  required string name = 1;
-  required int32 id = 2;
-  optional string email = 3;
+message mando {
 
-  enum PhoneType {
-    MOBILE = 0;
-    HOME = 1;
-    WORK = 2;
+  enum MsgType {
+    SERVICE_REQ = 0;
+    SERVICE_RESP = 1;
+    ONE_WAY =  2;
+    LOGIN_REQ = 3;
+    LOGIN_RESP = 4;
+    HEARTBEAT_REQ = 5;
+    HEARTBEAT_RESP = 6;
   }
 
-  message PhoneNumber {
-    required string number = 1;
-    optional PhoneType type = 2 [default = HOME];
-  }
+  required MsgType msg_type = 1;
 
-  repeated PhoneNumber phones = 4;
+  oneof msgBody {
+    Request request = 2;
+    Response response = 3;
+  }
 }
 
-message AddressBook {
-  repeated Person people = 1;
+message Request {
+}
+
+message Response {
+
 }

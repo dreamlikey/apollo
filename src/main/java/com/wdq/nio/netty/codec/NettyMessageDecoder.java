@@ -24,11 +24,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
-/**
- * @author Lilinfeng
- * @date 2014年3月15日
- * @version 1.0
- */
 public class NettyMessageDecoder extends LengthFieldBasedFrameDecoder {
 
 

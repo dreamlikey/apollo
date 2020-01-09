@@ -10,13 +10,11 @@ import java.util.Random;
  */
 public class Test {
     public static void main(String[] args) {
-        Random rand = new Random();
-        for (int i = 0 ; i< 10; i++) {
-            // 取0-3之间的一个随机值
-            int chanceInt = rand.nextInt(3);
-            System.out.println(chanceInt);
-        }
-
+        Integer i1 = 127;
+        Integer i2 = new Integer(127);
+        Integer i3 = 127;
+        System.out.println(i1 == i2);
+        System.out.println(i1 == i3);
     }
 
     static final int hash(Object key) {

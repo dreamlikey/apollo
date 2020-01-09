@@ -5,4 +5,8 @@ package com.wdq.nio.reactor;
  * @date 2019/12/9
  */
 public class ReadEventHandler extends EventHandler{
+    @Override
+    public void handle(Event event) {
+
+    }
 }

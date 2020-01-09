@@ -1,12 +1,15 @@
-package com.wdq.nio.reactor;
+package com.wdq.pattern.reactor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 事件接收器<br/>
- * 负责初始化selector和接收缓冲队列
+ * 事件注册
  * @author wudq
- * @date 2019/12/9
+ * @date 2019/12/19
  */
 public class Acceptor {
+
     Selector selector;
 
     public Acceptor(Selector selector) {
@@ -14,6 +17,7 @@ public class Acceptor {
     }
 
     public void accept(Event event) {
-        selector.addEvent(event);
+        selector.add(event);
     }
+
 }

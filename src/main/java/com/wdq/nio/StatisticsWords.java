@@ -52,12 +52,13 @@ public class StatisticsWords extends RecursiveTask<Integer> {
             long startNonTime = System.nanoTime();
             StatisticsWords statisticsWords = new StatisticsWords(0,fileSize);
 
-//            char[] sourceChars = statisticsWords.channelFileReader();
-//            char[] wordChars = KEY_WORD.toCharArray();
+            char[] sourceChars = statisticsWords.channelFileReader();
+            char[] wordChars = KEY_WORD.toCharArray();
 //            int count = statistics(sourceChars, wordChars);
-//
-//            long endTime = System.currentTimeMillis();
-//            System.out.println("nio  " + KEY_WORD + " 出现次数:" + count + "  统计耗时：" + (endTime - startTime) + "ms");
+            int count = kmpStr(sourceChars, wordChars);
+
+            long endTime = System.currentTimeMillis();
+            System.out.println("nio  " + KEY_WORD + " 出现次数:" + count + "  统计耗时：" + (endTime - startTime) + "ms");
 
             startTime = System.currentTimeMillis();
 
@@ -65,7 +66,7 @@ public class StatisticsWords extends RecursiveTask<Integer> {
             ForkJoinTask<Integer> res = pool.submit(statisticsWords);
             int count2 = res.get();
 
-            long endTime = System.currentTimeMillis();
+            endTime = System.currentTimeMillis();
             long endNonTime = System.nanoTime();
             System.out.println(endNonTime - startNonTime);
             System.out.println("Fork  " + KEY_WORD + " 出现次数:" + count2 + "  统计耗时 ：" + (endTime - startTime) + " ms");
@@ -75,7 +76,6 @@ public class StatisticsWords extends RecursiveTask<Integer> {
         } finally {
             Runtime.getRuntime().gc();
         }
-
 
     }
 
@@ -99,6 +99,7 @@ public class StatisticsWords extends RecursiveTask<Integer> {
 //            System.out.println("start:"+start + "  end:"+end + "  computeAble:"+computeAble);
             char[] sourceChars = channelFileReader(start, end -start);
             count = statistics(sourceChars, wordChars);
+//            count = kmpStr(sourceChars, wordChars);
         } else {//文件流分区大于ByteBuffer容量，切割小任务
             int mid = (start + end) / 2;
             StatisticsWords leftWordsTask  = new StatisticsWords(start, mid);
@@ -207,8 +208,44 @@ public class StatisticsWords extends RecursiveTask<Integer> {
      * KMP
      * @return
      */
-    public int KmpStr() {
-        return 0;
+    public static int kmpStr(char[] sourceChars, char[] wordChars){
+        int i1 = 0;
+        int i2 = 0;
+        char[] chars1 = sourceChars;
+        char[] chars2 = wordChars;
+        int [] next = getNext(chars2);
+        while (i1 < chars1.length && i2 < chars2.length){
+            if (chars1[i1] == chars2[i2]){
+                i1++;
+                i2++;
+            }else if (next[i2] == -1){
+                i1++;
+            }else {
+                i2 = next[i2];
+            }
+        }
+        return i2 == chars2.length ? i1 - i2 : -1;
+    }
+
+    public static int[] getNext(char[] chars){
+        if (chars.length == 1){
+            return new int[]{ -1 };
+        }
+        int [] next = new int[chars.length];
+        next[0] = -1;
+        next[1] = 0;
+        int pos = 2;
+        int cn = 0;
+        while (pos < chars.length){
+            if ( chars[pos-1] == chars[cn]){
+                next[pos++] = ++cn;
+            }else if (cn > 0){
+                cn = next[cn];
+            }else {
+                next[pos++] = 0;
+            }
+        }
+        return next;
     }
 }
 
@@ -237,6 +274,7 @@ class StatisticsWords$2 {
                 }
 //                System.out.println(line++ + "行");
                 count = count + statistics(text, keyword);
+//                count = count + kmpStr(text, keyword);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -279,8 +317,48 @@ class StatisticsWords$2 {
      * KMP
      * @return
      */
-    public int KmpStr() {
-        return 0;
+    public static int kmpStr(String text, String word){
+        if (text == null || word == null || text.length() == 0 ||
+            word.length() > text.length()) {
+            return -1;
+        }
+        int i1 = 0;
+        int i2 = 0;
+        char[] chars1 = text.toCharArray();
+        char[] chars2 = word.toCharArray();
+        int [] next = getNext(chars2);
+        while (i1 < text.length() && i2 < word.length()){
+            if (chars1[i1] == chars2[i2]){
+                i1++;
+                i2++;
+            }else if (next[i2] == -1){
+                i1++;
+            }else {
+                i2 = next[i2];
+            }
+        }
+        return i2 == word.length() ? i1 - i2 : -1;
+    }
+
+    public static int[] getNext(char[] chars){
+        if (chars.length == 1){
+            return new int[]{ -1 };
+        }
+        int [] next = new int[chars.length];
+        next[0] = -1;
+        next[1] = 0;
+        int pos = 2;
+        int cn = 0;
+        while (pos < chars.length){
+            if ( chars[pos-1] == chars[cn]){
+                next[pos++] = ++cn;
+            }else if (cn > 0){
+                cn = next[cn];
+            }else {
+                next[pos++] = 0;
+            }
+        }
+        return next;
     }
 }
 

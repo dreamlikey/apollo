@@ -11,7 +11,7 @@ public class Server {
     Dispatcher eventLoop = new Dispatcher(selector);
 
     public void start() {
-        Handler handler = new AcceptEventHandler();
+        Handler handler = new AcceptEventHandler(selector);
         eventLoop.register(EventType.ACCEPT, handler);
     }
 }
