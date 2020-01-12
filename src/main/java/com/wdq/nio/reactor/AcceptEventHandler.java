@@ -11,6 +11,10 @@ public class AcceptEventHandler extends EventHandler{
         this.selector = selector;
     }
 
+    public AcceptEventHandler() {
+
+    }
+
     @Override
     public void handle(Event event) {
         //处理Accept事件

@@ -1,5 +1,7 @@
 package com.wdq;
 
+import org.openjdk.jol.info.ClassLayout;
+
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -9,20 +11,13 @@ import java.util.Random;
  * @Description: TODO
  */
 public class Test {
+    byte i = 0;
+    short s = 0;
+    long j = 0;
+    int k = 1;
     public static void main(String[] args) {
-        Integer i1 = 127;
-        Integer i2 = new Integer(127);
-        Integer i3 = 127;
-        System.out.println(i1 == i2);
-        System.out.println(i1 == i3);
-    }
-
-    static final int hash(Object key) {
-        int h;
-        h = key.hashCode();
-        System.out.println(h);
-        h = h >>> 16;
-        return (h = key.hashCode()) ^ (h >>> 16);
+        ClassLayout layout = ClassLayout.parseInstance(new Test());
+        System.out.println(layout.toPrintable());
     }
 
 }

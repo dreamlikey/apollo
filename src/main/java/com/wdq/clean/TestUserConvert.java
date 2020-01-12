@@ -12,8 +12,8 @@ public class TestUserConvert {
         User user = convertFor(userDto);
         User user1 = new UserDTOConvert().convert(userDto);
 
-        User user2 = userDto.convertToUser();
-        userDto = userDto.convertFrom(user2);
+//        User user2 = userDto.convertToUser();
+//        userDto = userDto.convertFrom(user2);
     }
 
     public static User convertFor(UserDTO userDto) {
