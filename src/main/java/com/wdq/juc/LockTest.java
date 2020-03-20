@@ -5,8 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author wudq
- * @date 2020/1/9 0009
- * @Description: TODO
+ * @date 2020/1/9
  */
 public class LockTest {
     private static ReentrantLock lock = new ReentrantLock(true);

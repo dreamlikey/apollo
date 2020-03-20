@@ -13,6 +13,7 @@ public class DeadLockDemo {
         new Thread(()->{
             lockDemo.testb();
         },"thread bbbb").start();
+
     }
     public void testa() {
         synchronized (locka) {
