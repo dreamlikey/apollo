@@ -6,7 +6,6 @@
 	<groupId>com.wdq</groupId>
 	<artifactId>apollo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 
     <name>apollo</name>
@@ -134,6 +133,15 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.6</version>
+		</dependency>
+
 
 
 	</dependencies>
