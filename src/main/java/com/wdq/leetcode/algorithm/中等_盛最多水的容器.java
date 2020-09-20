@@ -12,10 +12,11 @@ public class 中等_盛最多水的容器 {
     public static void main(String[] args) {
         Solution_area area = new Solution_area();
         int[] height = new int[5000];
-        for (int i=0; i <1000;i++) {
+        for (int i=0; i <5000;i++) {
             height[i] = new Random().nextInt(100);
         }
         long start = System.currentTimeMillis();
+//        System.out.println(area.maxArea(height));
         System.out.println(area.maxArea_point(height));
         long end = System.currentTimeMillis();
         System.out.println("耗时："+(end-start));
