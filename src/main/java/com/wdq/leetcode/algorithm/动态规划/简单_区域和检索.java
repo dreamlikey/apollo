@@ -39,7 +39,7 @@ class NumArray {
     //依然是暴力
     public int sumRange(int i, int j) {
         int sum = 0;
-        for (;i <=j; i++) {
+        for (;i <= j; i++) {
             sum += nums[i];
         }
         return sum;
@@ -57,7 +57,7 @@ class NumArray_cache {
 
     /**
      * 缓存
-     * sumrange（i，j）=sum[j+1]−sum[i]
+     * sumrange（i，j）= sum[j+1] − sum[i]
      */
     public int sumRange(int i, int j) {
         return sums[j+1] - sums[i];

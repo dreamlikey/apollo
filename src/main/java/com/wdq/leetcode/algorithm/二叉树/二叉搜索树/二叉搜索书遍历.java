@@ -30,9 +30,9 @@ public class 二叉搜索书遍历 {
         if (node == null) {
             return;
         }
-        preOrder(node.left);
+        inOrder(node.left);
         System.out.print(node.val + " ");
-        preOrder(node.right);
+        inOrder(node.right);
     }
 
     /**
@@ -42,8 +42,8 @@ public class 二叉搜索书遍历 {
         if (node == null) {
             return;
         }
-        preOrder(node.left);
-        preOrder(node.right);
+        postOrder(node.left);
+        postOrder(node.right);
         System.out.print(node.val + " ");
     }
 }
