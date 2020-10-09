@@ -20,27 +20,37 @@ package com.wdq.leetcode.algorithm.动态规划;
 public class 二叉搜索树转换为累加树 {
     static int max = 0;
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(5);
-        TreeNode left = new TreeNode(2);
-        TreeNode right = new TreeNode(13);
+        TreeNode root = new TreeNode(2);
+        TreeNode left = new TreeNode(1);
+        TreeNode right = new TreeNode(3);
         root.left = left;
         root.right = right;
-        postOrder(root);
         convertBST(root);
+        max = 0;
+        System.out.println();
+        postOrder(root);
     }
 
+    /**
+     * 把二叉搜索树转换为累加树
+     * @param root
+     * @return
+     */
     public static TreeNode convertBST(TreeNode root) {
-        if (root == null) {
+        if (root != null) {
             return root;
         }
         convertBST(root.right);
         max += root.val;
         root.val = max;
+        System.out.print(root.val + " ");
         convertBST(root.left);
+
         return root;
     }
+
     /**
-     * 后序遍历
+     * 把二叉搜索树转换为累加树
      */
     public static void postOrder(TreeNode node) {
         if (node == null) {
