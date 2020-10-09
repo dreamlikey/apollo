@@ -1,9 +1,13 @@
 package com.wdq.leetcode.heap;
 
+import java.util.ArrayList;
+
 /**
  * 堆<br/>
+ * <li>
  * 完全二叉树
  * 父节点都大于叶子结点
+ * <li/>
  * @author wudq
  * @date 2020/10/09
  */
@@ -12,20 +16,27 @@ public class Heap {
     public Integer[] array;
     public int len;
 
+    /**
+     * 构造方法
+     * @param array
+     */
     public Heap(Integer[] array) {
         this.array = array;
         len = array.length;
     }
 
+    /**
+     * 建堆
+     */
     public void buildHeap() {
-        //数组建堆，最后一个非叶子节点(父节点)
+        //最后一个非叶子节点(父节点)
         heapify((len - 1) >> 1);
     }
 
     /**
-     * 数组建堆【数组堆化】
-     * 先找到堆的第一个非叶子节点
-     * 所有非叶子结点，逐一下沉，直到根结点也完成下沉，就是整棵完全二叉树堆化完成
+     * 堆化<br/>
+     * 先找到堆的第一个非叶子节点<br/>
+     * 所有非叶子结点，逐一下沉，直到根结点也完成下沉，就是整棵完全二叉树堆化完成<br/>
      */
     public void heapify(int index) {
         if (index < 0) {
