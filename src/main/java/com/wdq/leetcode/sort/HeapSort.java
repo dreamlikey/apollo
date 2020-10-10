@@ -27,6 +27,7 @@ public class HeapSort extends Sort {
             shiftDown(0, i - 1);
         }
     }
+
     /**
      * 堆化<br/>
      * 先找到堆的第一个非叶子节点<br/>
@@ -74,6 +75,7 @@ public class HeapSort extends Sort {
             index = max;
         }
     }
+
     /**
      * 左子节点 index
      * @param index

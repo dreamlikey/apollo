@@ -7,18 +7,12 @@ package com.wdq.leetcode.heap;
  * @author wudq
  * @date 2020/10/09
  */
-public class Heap {
+public abstract class Heap {
 
     public Integer[] array;
     public int len;
 
-    /**
-     * 构造方法
-     * @param array
-     */
-    public Heap(Integer[] array) {
-        this.array = array;
-        len = array.length;
+    public Heap() {
     }
 
     /**
@@ -26,7 +20,7 @@ public class Heap {
      */
     public void buildHeap() {
         //最后一个非叶子节点(父节点)
-        heapify((len - 1) >> 1);
+        heapify((len >> 1) - 1);
     }
 
     /**
@@ -43,12 +37,13 @@ public class Heap {
      * 堆化<br/>
      * 先找到堆的第一个非叶子节点<br/>
      * 所有非叶子结点，逐一下沉，直到根结点也完成下沉，就是整棵完全二叉树堆化完成<br/>
+     * @param index
      */
     public void heapify(int index) {
         if (index < 0) {
             return;
         }
-        shiftDown(index, len);
+        shiftDown(index, len-1);
         heapify(--index);
     }
 
@@ -70,27 +65,16 @@ public class Heap {
      * 父节点与更大的子节点交换，
      * 交换之后的子节点继续与它的子节点比较，直到叶子节点
      * @param index
+     * @param len
      */
-    public void shiftDown(int index, int len) {
-        //当前index是叶子节点，退出循环
-        while (lc(index) < len) {
-            int l = lc(index);
-            int r = rc(index);
-            //与更大的子节点交换，【如果右子节点越界，使用左子节点】
-            int max = r > len - 1 ? l : cmp(l, r) > 0 ? l : r;
-            if (cmp(index, max) < 0) {
-                swap(index, max);
-                index = max;
-            }
-        }
-    }
+    protected abstract void shiftDown(int index, int len);
 
     /**
      * 左子节点 index
      * @param index
      * @return
      */
-    private int lc(int index) {
+    protected int lc(int index) {
         return (index * 2) + 1;
     }
 
@@ -99,7 +83,7 @@ public class Heap {
      * @param index
      * @return
      */
-    private int rc(int index) {
+    protected int rc(int index) {
         return (index + 1) * 2;
     }
 
@@ -121,7 +105,7 @@ public class Heap {
      * @param i1
      * @param i2
      */
-    private void swap(int i1, int i2) {
+    protected void swap(int i1, int i2) {
         int temp = array[i1];
         array[i1] = array[i2];
         array[i2] = temp;
@@ -133,19 +117,7 @@ public class Heap {
      * @param i2
      * @return
      */
-    private int cmp(int i1, int i2) {
+    protected int cmp(int i1, int i2) {
         return array[i1] - array[i2];
     }
-
-    public static void main(String[] args) {
-        Integer[] arrays = new Integer[]{1,3,4,5,7,6,2,8,0,9};
-        Heap heap = new Heap(arrays);
-        System.out.println();
-        heap.sort();
-        System.out.println("排序后的堆数组");
-        for (int i = 0; i < arrays.length; i++) {
-            System.out.print(arrays[i]);
-        }
-    }
-
 }
