@@ -2,10 +2,8 @@ package com.wdq.leetcode.heap;
 
 /**
  * 堆<br/>
- * <li>
  * 完全二叉树
  * 父节点都大于叶子结点
- * <li/>
  * @author wudq
  * @date 2020/10/09
  */
