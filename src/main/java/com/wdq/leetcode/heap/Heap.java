@@ -1,7 +1,5 @@
 package com.wdq.leetcode.heap;
 
-import java.util.ArrayList;
-
 /**
  * 堆<br/>
  * <li>
