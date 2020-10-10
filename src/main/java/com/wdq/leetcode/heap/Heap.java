@@ -32,6 +32,16 @@ public class Heap {
     }
 
     /**
+     * 建堆
+     */
+    public void buildHeap(Integer[] array) {
+        this.array = array;
+        len = array.length;
+        //最后一个非叶子节点(父节点)
+        heapify((len - 1) >> 1);
+    }
+
+    /**
      * 堆化<br/>
      * 先找到堆的第一个非叶子节点<br/>
      * 所有非叶子结点，逐一下沉，直到根结点也完成下沉，就是整棵完全二叉树堆化完成<br/>
@@ -40,7 +50,7 @@ public class Heap {
         if (index < 0) {
             return;
         }
-        shiftDown(index);
+        shiftDown(index, len);
         heapify(--index);
     }
 
@@ -63,7 +73,7 @@ public class Heap {
      * 交换之后的子节点继续与它的子节点比较，直到叶子节点
      * @param index
      */
-    public void shiftDown(int index) {
+    public void shiftDown(int index, int len) {
         //当前index是叶子节点，退出循环
         while (lc(index) < len) {
             int l = lc(index);
@@ -96,10 +106,16 @@ public class Heap {
     }
 
     /**
-     * 堆排序
+     * 堆排序<br/>
+     * 堆顶与最后一个元素交换，排除最后一个元素并 执行一次shiftDown（下沉）操作（保证堆顶最大），
+     * 重复此操作直到最后两个元素
      */
     public void sort() {
-
+        buildHeap();
+        for (int i = len - 1; i > 0; i--) {
+            swap(0, i);
+            shiftDown(0, i - 1);
+        }
     }
 
     /**
@@ -126,7 +142,9 @@ public class Heap {
     public static void main(String[] args) {
         Integer[] arrays = new Integer[]{1,3,4,5,7,6,2,8,0,9};
         Heap heap = new Heap(arrays);
-        heap.buildHeap();
+        System.out.println();
+        heap.sort();
+        System.out.println("排序后的堆数组");
         for (int i = 0; i < arrays.length; i++) {
             System.out.print(arrays[i]);
         }
