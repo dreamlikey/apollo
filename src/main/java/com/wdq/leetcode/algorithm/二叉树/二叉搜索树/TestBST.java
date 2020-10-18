@@ -15,12 +15,14 @@ public class TestBST {
             bst.add(array);
         }
 
-        System.out.println(bst.contains(13));
-
+//        System.out.println(bst.contains(13));
+//
         BinarySearchTree<Integer> bstTree2 = getBST();
-
+//
         // PrintStyle.LEVEL_ORDER（层序打印）
-        BinaryTrees.println(bstTree2);
+        BinaryTrees.println(bst);
+
+        bst.postOrder(bst.getRoot());
     }
 
     public static BinarySearchTree getBST() {

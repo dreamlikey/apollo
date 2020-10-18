@@ -1,11 +1,13 @@
 package com.wdq.leetcode.algorithm.二叉树.二叉搜索树;
 
 import com.wdq.leetcode.BinaryTreePrinter.src.com.mj.printer.BinaryTreeInfo;
+import lombok.Data;
 
 /**
  * @author wudq
  * @date 2020/7/3
  */
+@Data
 public class BinarySearchTree<E extends Comparable<E>> implements BinaryTreeInfo {
 
     private int size;
@@ -86,6 +88,18 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinaryTreeInfo
             }
         }
         return Boolean.FALSE;
+    }
+
+    /**
+     * 后序遍历
+     */
+    public void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.print(node.element + " ");
     }
 
 

@@ -46,6 +46,19 @@ public class 二叉搜索书遍历 {
         postOrder(node.right);
         System.out.print(node.val + " ");
     }
+
+
+    public void morris(TreeNode node) {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] arrays = new Integer[]{7,4,9,2,5,8,11,1,3,6,10,12};
+        for (Integer array : arrays) {
+            bst.add(array);
+        }
+    }
+
+    public static void main(String[] args) {
+
+    }
 }
 
 class TreeNode {
