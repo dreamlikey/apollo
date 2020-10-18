@@ -34,6 +34,12 @@ public class _72_编辑距离 {
         System.out.println("minDistance = " + minDistance);
     }
 
+    /**
+     * 动态规划求解
+     * @param word1
+     * @param word2
+     * @return
+     */
     public static int minDistance(String word1, String word2) {
         if (word1 == null || word2 == null)
             return 0;

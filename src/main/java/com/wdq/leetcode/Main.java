@@ -4,6 +4,10 @@ package com.wdq.leetcode;
 import com.wdq.leetcode.sort.*;
 import com.wdq.leetcode.utils.Integers;
 
+/**
+ * https://www.cnblogs.com/onepixel/articles/7674659.html
+ * @author wudq
+ */
 public class Main {
     public static void main(String[] args) {
         Integer[] array1 = Integers.random(10000, 1, 20000);
