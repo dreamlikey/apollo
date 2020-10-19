@@ -8,8 +8,6 @@ import java.util.Map;
  * @date 2020/10/18
  * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
  *
- *  
- *
  * 示例 1:
  *
  * 输入: "abcabcbb"
@@ -33,27 +31,32 @@ public class _48_最长不含重复字符的子字符串 {
         Map<Character, Integer> dic = new HashMap<>();
         int max = 0;
         int len = 0;
+        int si = 0;
         for (int i = 0; i < chars.length; i++) {
-
             if (dic.get(chars[i]) == null) {
                 dic.put(chars[i], i);
-                len++;
             } else {
+                len = i - si;
+                if (len > max) {
+                    max = len;
+                }
+                si = i;
                 dic.put(chars[i], i);
-                len = 0;
             }
-            System.out.println(len);
-            if (len > max) {
-                max = len;
-            }
+            System.out.println("len = " + len);
         }
-
+        if (len > max) {
+            max = len;
+        }
         return max;
     }
 
     public static void main(String[] args) {
         String s = "pwwkew";
-         s = " ";
+//        s = "abcabcbb";
+//        s = " ";
+//        s = "dvdf";
+        s = "abbab";
         int i = lengthOfLongestSubstring(s);
         System.out.println("i = " + i);
     }

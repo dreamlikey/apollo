@@ -1,10 +1,6 @@
 package com.wdq.basic;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 延时队列
@@ -15,15 +11,15 @@ import java.util.Set;
  */
 public class DelayQueue {
 
-    private static int queueSize = 60;
+    private static int queueSize = 300;
 
-    static List<Slot> cycleQueue = new ArrayList<Slot>(queueSize);
+    static List<Slot> cycleQueue = Arrays.asList(new Slot[queueSize]);
 
     /**
      * @param key
      * @param delayTime 延迟时间 秒数
      */
-    public void add(String key,int delayTime) {
+    public void add(String key, int delayTime) {
         //计算队列位置
         int index = (delayTime + getIndex()) % queueSize;
 
@@ -35,17 +31,17 @@ public class DelayQueue {
 
         //凹槽
         Slot slot = cycleQueue.get(index);
-        Set<Task> set = slot.getTaskSet();
-        set.add(task);
         //没有任务集则添加
         if (slot == null) {
             slot = new Slot();
-            cycleQueue.add(index,slot);
+            cycleQueue.set(index,slot);
         }
+        Set<Task> set = slot.getTaskSet();
+        set.add(task);
         System.out.println("添加task:"+index);
     }
 
-    public Task offer() {
+    public List<Task> offer() {
         int index = getIndex();
         System.out.println("当前位置："+index);
 
@@ -60,13 +56,14 @@ public class DelayQueue {
         }
         Set<Task> tasks = slot.getTaskSet();
         Iterator<Task> iter = tasks.iterator();
+        List<Task> executeTasks = new ArrayList<>();
         Task task;
         while (iter.hasNext()) {
             task = iter.next();
             int cycleNum = task.getCycleNum() -1;
             task.setCycleNum(cycleNum);
             if (cycleNum <= 0 ) {
-                return task;
+                executeTasks.add(task);
             }
         }
         return null;

@@ -5,7 +5,7 @@ package com.wdq.leetcode.heap;
  * 从海量数据中找出前K个数据
  * 比如 : 从100万个整数中找出最大的100个整数
  *
- * 小顶堆
+ * 小顶堆，时间复杂度O(nlogk)
  * @author wudq
  * @date 2020/10/10
  */

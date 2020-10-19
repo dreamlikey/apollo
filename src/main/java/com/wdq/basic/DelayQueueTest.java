@@ -1,5 +1,6 @@
 package com.wdq.basic;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -9,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 public class DelayQueueTest {
     public static void main(String[] args) {
         DelayQueue delayQueue = new DelayQueue();
-
+        delayQueue.add( "transportWay", 10);
         while (true) {
             try {
-                Task task = delayQueue.offer();
-                if (task !=null) {
-                    System.out.println(task.getKey());
+                List<Task> tasks = delayQueue.offer();
+                if (tasks != null) {
+                    System.out.println(tasks.get(0).getKey());
                 }else {
                     System.out.println("null");
                 }
