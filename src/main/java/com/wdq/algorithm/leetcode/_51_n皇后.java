@@ -185,7 +185,7 @@ public class _51_n皇后 {
 
     public static void main(String[] args) {
         _51_n皇后 o = new _51_n皇后();
-        List<List<String>> lists = o.solveNQueens(4);
+        List<List<String>> lists = o.solveNQueens(8);
         System.out.println(lists);
     }
 }
