@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * #48 中等
+ * #48 中等<br/>
+ * 1、滑动窗口
+ * 算法 algorithm
+ * 数据结构 data structure
+ * 策略
  * @author wudq
  * @date 2020/10/18
  * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
@@ -20,7 +24,7 @@ import java.util.Map;
 public class _48_最长不含重复字符的子字符串 {
 
     /**
-     * 动态规划
+     * 暴力判断
      * @param s
      * @return
      */
@@ -58,9 +62,7 @@ public class _48_最长不含重复字符的子字符串 {
     public static int lengthOfLongestSubstring2(String s) {
         char[] chars = s.toCharArray();
         //窗口起始位置
-        int si = 0;
-        int len = 0;
-        int max = 0;
+        int si = 0, len = 0, max = 0;
         Integer pi;
         Map<Character, Integer> dic = new HashMap<>();
         //滑动
