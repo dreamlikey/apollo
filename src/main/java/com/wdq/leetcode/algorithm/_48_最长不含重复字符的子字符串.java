@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * #48 中等
  * @author wudq
  * @date 2020/10/18
  * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
@@ -25,39 +26,69 @@ public class _48_最长不含重复字符的子字符串 {
      */
     public static int lengthOfLongestSubstring(String s) {
         char[] chars = s.toCharArray();
-        if (chars == null) {
-            return 0;
-        }
+        Integer pi;
         Map<Character, Integer> dic = new HashMap<>();
-        int max = 0;
-        int len = 0;
-        int si = 0;
+        int max = 0, len = 0, si = 0;
         for (int i = 0; i < chars.length; i++) {
-            if (dic.get(chars[i]) == null) {
-                dic.put(chars[i], i);
-            } else {
-                len = i - si;
-                if (len > max) {
-                    max = len;
+            pi = dic.get(chars[i]);
+            if (pi != null) {
+                if (pi == si) {
+                    len = i - si;
+                    si = pi + 1;
+                } else if (pi > si) {
+                    len = i - pi;
+                    si = pi;
+                } else if (pi < si) {
+                    len = i - si;
                 }
-                si = i;
-                dic.put(chars[i], i);
+            } else {
+                len++;
             }
-            System.out.println("len = " + len);
+            max = len > max ? len : max;
+            dic.put(chars[i], i);
         }
-        if (len > max) {
-            max = len;
+        return max;
+    }
+
+    /**
+     * 滑动窗口
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring2(String s) {
+        char[] chars = s.toCharArray();
+        //窗口起始位置
+        int si = 0;
+        int len = 0;
+        int max = 0;
+        Integer pi;
+        Map<Character, Integer> dic = new HashMap<>();
+        //滑动
+        for (int i = 0; i < chars.length; i++) {
+            pi = dic.get(chars[i]);
+            if (pi != null && pi >= si) {
+                si = pi + 1;
+            }
+            len = i - si + 1;
+            max = len > max ? len : max;
+            dic.put(chars[i], i);
         }
         return max;
     }
 
     public static void main(String[] args) {
         String s = "pwwkew";
-//        s = "abcabcbb";
-//        s = " ";
+        s = "abcabcbb";
+        s = "";
 //        s = "dvdf";
-        s = "abbab";
+//        s = "abbab";
+//        s = "ohomm";
+//        s = "tmmzuxt";
+//        s = "abcdef";
         int i = lengthOfLongestSubstring(s);
         System.out.println("i = " + i);
+        int j = lengthOfLongestSubstring2(s);
+        System.out.println("j = " + j);
+
     }
 }
