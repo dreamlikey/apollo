@@ -26,6 +26,36 @@ public class _322_零钱兑换 {
         return amount > 0 ? -1 : count;
     }
 
+    /**
+     * 动态规划
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public static int coinChange2(int[] coins, int amount) {
+
+        return 0;
+    }
+
+    /**
+     * 回溯
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public static int coinChange3(int[] coins, int amount) {
+        Arrays.sort(coins);
+        int[] dp = new int[amount];
+        dp[0] = 1;
+        for (int i = 1; i <= coins.length; i++) {
+
+        }
+
+        return 0;
+    }
+
+
+
     public static void main(String[] args) {
 //        [186,419,83,408]
 
