@@ -67,9 +67,63 @@ public class _53_最大子序列和 {
         return Math.max(max, rightMax + leftMax);
     }
 
+
+    /**
+     * [-2,1,-3,4,-1,2,1,-5,4]
+     * 动态规划
+     * dp[i] 当前下标子序列和的最大值
+     *
+     */
+    public static int maxSubArray2(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        int max = dp[0];
+        for (int i = 1; i < nums.length; i++) {
+            //dp[i-1]小于0 dp[i]取当前值
+            if (dp[i-1] <= 0) {
+                dp[i] = nums[i];
+            } else {
+                //dp[i-1]>0 则 p[i] = dp[i-1] + nums[i]
+                dp[i] = dp[i-1] + nums[i];
+            }
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+
+    /**
+     * 动态规划--优化
+     * 空间复杂度O(1)
+     * @param nums
+     * @return
+     */
+    public static int maxSubArray3(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        int dp = nums[0];
+        int max = dp;
+        for (int i = 1; i < nums.length; i++) {
+            if (dp <= 0) {
+                dp = nums[i];
+            } else {
+                dp = dp + nums[i];
+            }
+            max = Math.max(max, dp);
+        }
+        return max;
+    }
+
+
+
     public static void main(String[] args) {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+//        int[] nums = {-2,1};
         int max = maxSubArray1(nums);
         System.out.println("max = " + max);
+
+        int max2 = maxSubArray2(nums);
+        System.out.println("max2 = " + max2);
     }
 }
