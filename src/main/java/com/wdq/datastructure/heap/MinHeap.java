@@ -30,7 +30,7 @@ public class MinHeap extends Heap{
         while (lc(index) <= len) {
             int l = lc(index);
             int r = rc(index);
-            //与更大的子节点交换，【如果右子节点越界，使用左子节点】
+            //与更小的子节点交换，【如果右子节点越界，使用左子节点】
             int min = r > len ? l : cmp(l, r) < 0 ? l : r;
             if (cmp(index, min) <= 0) {
                 break;

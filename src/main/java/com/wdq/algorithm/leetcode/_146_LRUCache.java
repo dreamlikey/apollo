@@ -25,6 +25,13 @@ public class _146_LRUCache {
         last.pre = first;
     }
 
+    /**
+     * get
+     *
+     * 解链
+     * 插入头
+     *
+     */
     public int get(int key) {
         Node v = map.get(key);
         if (v == null) return -1;
@@ -35,6 +42,17 @@ public class _146_LRUCache {
         return v.value;
     }
 
+    /**
+     * put
+     *
+     * 值不存在：
+     *      是否超过容量
+     *          是   尾结点解链、移出hash表
+     *          否   插入头
+     * 值存在：
+     *      解链
+     *      插入头
+     */
     public void put(int key, int value) {
         Node v = map.get(key);
         //值不存在
