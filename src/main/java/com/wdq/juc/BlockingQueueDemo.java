@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class BlockingQueueDemo {
     public static void main(String[] args) {
-        Product product = new Product();
+        Product2 product = new Product2();
         new Thread(() -> {
             for (int i = 0; i < 5; i++) {
                     product.incr();
@@ -40,7 +40,9 @@ public class BlockingQueueDemo {
 
 class Product2 {
     private int number = 0;
+    //共享锁
     private ReentrantLock lock = new ReentrantLock();
+    //共享condition
     private Condition condition = lock.newCondition();
     public void incr() {
         lock.lock();
@@ -50,7 +52,7 @@ class Product2 {
             }
             number++;
             System.out.println(Thread.currentThread().getName() + "\t"+number);
-            //唤醒所有等待线程，包括wait和blocked两种状态的线程
+            //唤醒所有等待线程，包括wait和blocked两种状态的线程T
             condition.signalAll();
         } catch(Exception e) {
             e.printStackTrace();

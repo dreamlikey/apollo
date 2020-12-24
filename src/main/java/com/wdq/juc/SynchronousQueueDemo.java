@@ -83,10 +83,6 @@ class Product {
 //        lock.tryLock();
         try {
             TimeUnit.SECONDS.sleep(1);
-            //虚假唤醒
-//            if (number >= 1) {
-//                condition.await();
-//            }
             //await状态线程唤醒之后继续判断number>=1
             while (number >= 1) {
                 condition.await();
@@ -95,7 +91,7 @@ class Product {
             number++;
             System.out.println(Thread.currentThread().getName() + "\t" + number);
             condition.signalAll();
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
