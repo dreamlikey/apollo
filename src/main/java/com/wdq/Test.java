@@ -1,10 +1,5 @@
 package com.wdq;
 
-import org.openjdk.jol.info.ClassLayout;
-import org.openjdk.jol.info.GraphLayout;
-
-import java.text.DecimalFormat;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,6 +10,10 @@ import java.util.concurrent.TimeUnit;
 public class Test {
     public static void main(String[] args) {
         System.out.println(TimeUnit.MINUTES.toMillis(10));
+        String key = "aedqwert";
+        int h = key.hashCode();
+        h = (h >>> 16);
+        System.out.println("h = " + h);
     }
 
 }

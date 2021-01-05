@@ -19,7 +19,7 @@ public class StateMachine {
 
     public StateMachine(int count) {
         this.count = count;
-        if (count >0) {
+        if (count > 0) {
             state = NO_COIN;
         }
     }
