@@ -47,7 +47,7 @@ public class BotK {
                 heap.shiftDown(0, top - 1);
             }
         }
-        //升序（小顶堆）
+        //升序（大顶堆）
         heap.sort();
     }
 }

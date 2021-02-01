@@ -1,6 +1,7 @@
 package com.wdq.datastructure.heap;
 
 import com.wdq.datastructure.utils.Integers;
+import org.springframework.util.StopWatch;
 
 /**
  * 堆测试
@@ -19,18 +20,23 @@ public class HeapTest {
 //            System.out.print(arrays[i]);
 //        }
 
-        Integer[] array1 = Integers.random(10000,1, 30000);
+        Integer[] array1 = Integers.random(100000,1, 30000);
         Integer[] array2 = Integers.copy(array1);
-
+        StopWatch sw = new StopWatch();
+        sw.start("topk");
         //最大top个
         TopK topK = new TopK();
         topK.top(array1, 100);
+        sw.stop();
         Integer[] tops = topK.tops;
         Integers.println(tops);
 
+        sw.start("botk");
         //最小top个
         BotK botK = new BotK();
         botK.bottom(array2, 100);
+        sw.stop();
+        System.out.println("botK = " + sw.prettyPrint());
         Integer[] bottoms = botK.tops;
         Integers.println(bottoms);
     }

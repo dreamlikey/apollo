@@ -48,7 +48,7 @@ public class TopK {
                 heap.shiftDown(0, top - 1);
             }
         }
-        //降序（大顶堆）
+        //降序（小顶堆）
         heap.sort();
     }
 }
