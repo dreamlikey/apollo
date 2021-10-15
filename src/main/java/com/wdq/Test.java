@@ -50,6 +50,13 @@ public class Test {
 //        }
 //
 //        System.out.println(platformList);
+        Long a = Long.valueOf(127);
+        Long b = Long.valueOf(127);
+        System.out.println(a == b);
+
+        Long a1 = 127L;
+        Long a2 = 127L;
+        System.out.println(a1 == a2);
     }
 
 }
