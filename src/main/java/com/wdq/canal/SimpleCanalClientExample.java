@@ -46,7 +46,7 @@ public class SimpleCanalClientExample {
             int emptyCount = 0;
             try {
                 connector.connect();
-                connector.subscribe(".*\\..*");
+                connector.subscribe("waybill\\..*");
                 connector.rollback();
                 int totalEmptyCount = 1000;
                 while (emptyCount < totalEmptyCount) {
